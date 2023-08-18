@@ -22,6 +22,7 @@ import {
  */
 const defaultConfig: UseWhisperConfig = {
   apiKey: '',
+  apiUrl: whisperApiEndpoint,
   autoStart: false,
   autoTranscribe: true,
   mode: 'transcriptions',
@@ -55,6 +56,7 @@ const defaultTranscript: UseWhisperTranscript = {
 export const useWhisper: UseWhisperHook = (config) => {
   const {
     apiKey,
+    apiUrl,
     autoStart,
     autoTranscribe,
     mode,
@@ -64,7 +66,6 @@ export const useWhisper: UseWhisperHook = (config) => {
     streaming,
     timeSlice,
     whisperConfig,
-    endpointUrl=whisperApiEndpoint,
     onDataAvailable: onDataAvailableCallback,
     onTranscribe: onTranscribeCallback,
   } = {
@@ -74,6 +75,10 @@ export const useWhisper: UseWhisperHook = (config) => {
 
   if (!apiKey && !onTranscribeCallback) {
     throw new Error('apiKey is required if onTranscribe is not provided')
+  }
+
+  if (!apiUrl) {
+    throw new Error('apiUrl is required')
   }
 
   const chunks = useRef<Blob[]>([])
@@ -520,7 +525,7 @@ export const useWhisper: UseWhisperHook = (config) => {
         headers['Authorization'] = `Bearer ${apiKey}`
       }
       const { default: axios } = await import('axios')
-      const response = await axios.post(endpointUrl + mode, body, {
+      const response = await axios.post(apiUrl + mode, body, {
         headers,
       })
       return response.data.text

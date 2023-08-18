@@ -23,17 +23,17 @@ Progress: [https://github.com/chengsokdara/use-whisper-native/issues/1](https://
 - ### Install
 
 ```
-npm i @chengsokdara/use-whisper
+npm i @rkimball/use-whisper
 ```
 
 ```
-yarn add @chengsokdara/use-whisper
+yarn add @rkimball/use-whisper
 ```
 
 - ### Usage
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const {
@@ -65,7 +65,7 @@ const App = () => {
 - ###### Custom Server (keep OpenAI API token secure)
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   /**
@@ -114,7 +114,7 @@ const App = () => {
 - ###### Real-time streaming trascription
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
@@ -137,7 +137,7 @@ const App = () => {
 - ###### Remove silence before sending to Whisper to save cost
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
@@ -157,7 +157,7 @@ const App = () => {
 - ###### Auto start recording on component mounted
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
@@ -177,7 +177,7 @@ const App = () => {
 - ###### Keep recording as long as the user is speaking
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
@@ -197,7 +197,7 @@ const App = () => {
 - ###### Customize Whisper API config when autoTranscribe is true
 
 ```jsx
-import { useWhisper } from '@chengsokdara/use-whisper'
+import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
@@ -237,6 +237,7 @@ _most of these dependecies are lazy loaded, so it is only imported when it is ne
 | Name            | Type                                               | Default Value  | Description                                                                                                          |
 | --------------- | -------------------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------- |
 | apiKey          | string                                             | ''             | your OpenAI API token                                                                                                |
+| apiUrl          | string                                             | 'https://api.openai.com/v1/audio/' | your endpoint URL                                                                                |
 | autoStart       | boolean                                            | false          | auto start speech recording on component mount                                                                       |
 | autoTranscribe  | boolean                                            | true           | should auto transcribe after stop recording                                                                          |
 | mode            | string                                             | transcriptions | control Whisper mode either transcriptions or translations, currently only support translation to English            |
