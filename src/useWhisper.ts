@@ -64,6 +64,7 @@ export const useWhisper: UseWhisperHook = (config) => {
     streaming,
     timeSlice,
     whisperConfig,
+    endpointUrl=whisperApiEndpoint,
     onDataAvailable: onDataAvailableCallback,
     onTranscribe: onTranscribeCallback,
   } = {
@@ -519,7 +520,7 @@ export const useWhisper: UseWhisperHook = (config) => {
         headers['Authorization'] = `Bearer ${apiKey}`
       }
       const { default: axios } = await import('axios')
-      const response = await axios.post(whisperApiEndpoint + mode, body, {
+      const response = await axios.post(endpointUrl + mode, body, {
         headers,
       })
       return response.data.text
