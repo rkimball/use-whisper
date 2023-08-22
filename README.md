@@ -111,7 +111,8 @@ import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
     streaming: true,
     timeSlice: 1_000, // 1 second
     whisperConfig: {
@@ -134,7 +135,8 @@ import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
     // use ffmpeg-wasp to remove silence from recorded speech
     removeSilence: true,
   })
@@ -154,7 +156,8 @@ import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
     // will auto start recording speech upon component mounted
     autoStart: true,
   })
@@ -174,7 +177,8 @@ import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
     nonStop: true, // keep recording as long as the user is speaking
     stopTimeout: 5000, // auto stop after 5 seconds
   })
@@ -194,7 +198,8 @@ import { useWhisper } from '@rkimball/use-whisper'
 
 const App = () => {
   const { transcript } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
     autoTranscribe: true,
     whisperConfig: {
       prompt: 'previous conversation', // you can pass previous conversation for context
