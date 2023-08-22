@@ -73,10 +73,6 @@ export const useWhisper: UseWhisperHook = (config) => {
     ...config,
   }
 
-  if (!apiKey && !onTranscribeCallback) {
-    throw new Error('apiKey is required if onTranscribe is not provided')
-  }
-
   if (!apiUrl ) {
     throw new Error('apiUrl is required')
   }
