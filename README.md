@@ -37,7 +37,8 @@ const App = () => {
     startRecording,
     stopRecording,
   } = useWhisper({
-    apiKey: process.env.OPENAI_API_TOKEN, // YOUR_OPEN_AI_TOKEN
+    apiKey: process.env.WHISPER_API_TOKEN,
+    apiUrl: process.env.WHISPER_API_URL
   })
 
   return (
