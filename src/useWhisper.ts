@@ -500,6 +500,7 @@ export const useWhisper: UseWhisperHook = (config) => {
   const onWhispered = useMemoAsync(
     async (file: File) => {
       // Whisper only accept multipart/form-data currently
+      console.log('**************** hello from onWhispered')
       const body = new FormData()
       body.append('file', file)
       body.append('model', 'whisper-1')
