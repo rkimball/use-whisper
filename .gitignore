@@ -6,3 +6,5 @@ yarn-debug.log
 .env
 lib
 dist
+
+.yarn*

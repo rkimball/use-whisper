@@ -545,7 +545,6 @@ export const useWhisper: UseWhisperHook = (config) => {
     speaking,
     transcribing,
     transcript,
-    chunks,
     pauseRecording,
     startRecording,
     stopRecording,
