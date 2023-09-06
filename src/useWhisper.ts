@@ -8,7 +8,6 @@ import {
   defaultStopTimeout,
   ffmpegCoreUrl,
   silenceRemoveCommand,
-  whisperApiEndpoint,
 } from './configs'
 import {
   UseWhisperConfig,
@@ -73,7 +72,7 @@ export const useWhisper: UseWhisperHook = (config) => {
     ...config,
   }
 
-  if (!apiUrl ) {
+  if (!apiUrl) {
     throw new Error('apiUrl is required')
   }
 
@@ -154,6 +153,18 @@ export const useWhisper: UseWhisperHook = (config) => {
    */
   const stopRecording = async () => {
     await onStopRecording()
+  }
+
+  /**
+   * restart speech recording, flushing any buffers, and start transcription
+   */
+  const restartRecording = async () => {
+    if (chunks.current) {
+      chunks.current = []
+    }
+    if (encoder.current) {
+      encoder.current.flush()
+    }
   }
 
   /**
@@ -313,14 +324,14 @@ export const useWhisper: UseWhisperHook = (config) => {
         onStopStreaming()
         onStopTimeout('stop')
         setRecording(false)
-        if (autoTranscribe) {
-          await onTranscribing()
-        } else {
-          const blob = await recorder.current.getBlob()
-          setTranscript({
-            blob,
-          })
-        }
+        // if (autoTranscribe) {
+        //   await onTranscribing()
+        // } else {
+        //   const blob = await recorder.current.getBlob()
+        //   setTranscript({
+        //     blob,
+        //   })
+        // }
         await recorder.current.destroy()
         chunks.current = []
         if (encoder.current) {
@@ -534,8 +545,10 @@ export const useWhisper: UseWhisperHook = (config) => {
     speaking,
     transcribing,
     transcript,
+    chunks,
     pauseRecording,
     startRecording,
     stopRecording,
+    restartRecording,
   }
 }
